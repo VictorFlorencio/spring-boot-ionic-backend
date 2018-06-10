@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -38,6 +39,7 @@ private static final long serialVersionUID = 1L;
 	
 	private List<Categoria> categorias = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="id.produto")
 	private Set<ItemPedido> itens = new HashSet<>();
 	
@@ -53,6 +55,7 @@ private static final long serialVersionUID = 1L;
 		this.preco = preco;
 	}
 	
+	@JsonIgnore
 	public List<Pedido> getPedidos(){
 		List<Pedido> lista = new ArrayList<>();
 		for(ItemPedido x : itens) {
